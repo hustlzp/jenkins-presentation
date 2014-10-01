@@ -30,88 +30,140 @@
   <script src="modernizr.custom.js"></script>
 </head>
 <body>
-  <div class="deck-container">
+<div class="deck-container">
 
-    <!-- Begin slides. Just make elements with a class of slide. -->
+  <!-- Begin slides. Just make elements with a class of slide. -->
 
-    <section class="slide">
-      <h1>使用 Jenkins 优化团队开发流程</h1>
-    </section>
+  <section class="slide">
+    <h1>使用 Jenkins 优化团队开发流程</h1>
+  </section>
 
-    <section class="slide">
-      <h2>个人简介</h2>
-      <p>刘志鹏 / hustlzp</p>
-      <p>华中科技大学光电学院，2015年6月毕业。</p>
-      <p>博客: hustlzp.com</p>
-      <p>GitHub用户名: hustlzp</p>
+  <section class="slide">
+    <h2>个人简介</h2>
 
-    </section>
+    <p>刘志鹏 / hustlzp</p>
 
-    <section class="slide">
-      <h2>概要</h2>
-      <ul>
-        <li>持续集成</li>
-        <li>Jenkins简介</li>
-        <li>安装和配置</li>
-        <li>自动化测试、发布</li>
-        <li>代码质量检测</li>
-        <li>Jenkins配置文件的备份、变更记录</li>
-        <li>小结</li>
-      </ul>
-    </section>
+    <p>华中科技大学光电学院，2015年6月毕业。</p>
 
-    <section class='slide'>
-      <h2>持续集成？</h2>
+    <p>博客: hustlzp.com</p>
 
-      <p>持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽快地发现集成错误。</p>
+    <p>GitHub用户名: hustlzp</p>
 
-      <h3>例子</h3>
+  </section>
 
-      <ul>
-        <li>A写完了自己的代码，并编写了单元测试，运行通过。</li>
-        <li>B写完了自己的代码，并编写了单元测试，运行通过。</li>
-        <li>B将代码部署到生产服务器。</li>
-        <li>B摸不着头脑</li>
-      </ul>
+  <section class="slide">
+    <h2>概要</h2>
+    <ul>
+      <li>真实的需求</li>
+      <li>Jenkins简介</li>
+      <li>安装和启动</li>
+      <li>自动化测试、代码质量检测、发布</li>
+      <li>Jenkins配置文件的备份、变更记录</li>
+      <li>小结</li>
+    </ul>
+  </section>
 
-    </section>
+  <section class='slide'>
+    <h2>真实的需求</h2>
 
-    <section class="slide">
-      <h1></h1>
-    </section>
+    <p>曾经在一个学生创业团队兼职，主要使用Python做Web开发。</p>
 
-    <section class='slide'>
-      <h2>Jenkins简介</h2>
-      <img src="http://jenkins-ci.org/sites/default/files/jenkins_logo.png">
-    </section>
+    <ul>
+      <li>A新建了一个特性分支，写完了功能代码。</li>
+      <li>A忘记了执行单元测试，就将此分支合并到master。</li>
+      <li>A将代码部署到生产服务器。</li>
+      <li>网站出现了bug，严重影响了用户体验。</li>
+    </ul>
 
-    <!-- End slides. -->
+    <p><strong>解决方案</strong>：将测试/部署等 <strong>容易遗漏的、重复性的、枯燥的</strong> 过程，交给机器自动完成。</p>
+    <ul>
+      <li>减少风险，缩短 <strong>开发-测试-交付</strong> 的周期</li>
+      <li>增强项目的可见性，增强团队对开发产品的信心</li>
+    </ul>
+  </section>
 
-    <!-- Begin extension snippets. Add or remove as needed. -->
+  <section class='slide'>
+    <h2>Jenkins简介</h2>
 
-    <!-- deck.navigation snippet -->
-    <div aria-role="navigation">
-      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
-    </div>
+    <img style="margin-left: 0" src="http://jenkins-ci.org/sites/default/files/jenkins_logo.png">
 
-    <!-- deck.status snippet -->
-    <p class="deck-status" aria-role="status">
-      <span class="deck-status-current"></span>
-      /
-      <span class="deck-status-total"></span>
-    </p>
+    <p>市场占有率最高（70%）的持续集成工具。</p>
 
-    <!-- deck.goto snippet -->
-    <form action="." method="get" class="goto-form">
-      <label for="goto-slide">Go to slide:</label>
-      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-      <datalist id="goto-datalist"></datalist>
-      <input type="submit" value="Go">
-    </form>
+    <ul>
+      <li>安装简单</li>
+      <li>配置简单</li>
+      <li>极其丰富的插件</li>
+      <li>非常高的开发频率（GitHub项目地址: https://github.com/jenkinsci/jenkins）</li>
+    </ul>
+  </section>
 
-    <!-- End extension snippets. -->
+  <section class="slide">
+    <h2>安装和启动</h2>
+
+    <p>针对Windows、Ubuntu、CentOS等数10种操作系统都提供了安装包。</p>
+
+    <h3>举例：CentOS 6.5</h3>
+
+    <pre>yum install jenkins
+service jenkins start</pre>
+
+    <h3>使用Docker安装</h3>
+
+    <pre>docker run -d -p 8080:8080 -t zaiste/jenkins</pre>
+
+    <p>启动后，Jenkins会运行在8080端口，可通过浏览器访问。</p>
+  </section>
+
+  <section class="slide">
+    <h2>自动化测试、发布</h2>
+
+    <p>Job: Jenkins中的核心概念。</p>
+
+    <ul>
+      <li>tm_test: 执行测试、代码质量检测等。</li>
+      <li>tm_staging_deploy: 将代码deploy到staging服务器上。</li>
+      <li>tm_production_deploy: 将代码部署到用于在production服务器上deploy代码。</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Over</h2>
+
+    <p>Thank you for listening!</p>
+
+    <ul>
+      <li>PPT地址: http://hustlzp.github.io/jenkins-presentation</li>
+      <li>相关博文: http://hustlzp.com/post/2014/08/jenkins</li>
+    </ul>
+  </section>
+
+  <!-- End slides. -->
+
+  <!-- Begin extension snippets. Add or remove as needed. -->
+
+  <!-- deck.navigation snippet -->
+  <div aria-role="navigation">
+    <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+    <a href="#" class="deck-next-link" title="Next">&#8594;</a>
   </div>
+
+  <!-- deck.status snippet -->
+  <p class="deck-status" aria-role="status">
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
+  </p>
+
+  <!-- deck.goto snippet -->
+  <form action="." method="get" class="goto-form">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+    <datalist id="goto-datalist"></datalist>
+    <input type="submit" value="Go">
+  </form>
+
+  <!-- End extension snippets. -->
+</div>
 
 <!-- Required JS files. -->
 <script src="jquery.min.js"></script>
@@ -126,7 +178,7 @@
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-  $(function() {
+  $(function () {
     $.deck('.slide');
   });
 </script>

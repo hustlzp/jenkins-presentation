@@ -7,7 +7,7 @@
 @import "reset";
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Hoefler Text", Constantia, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-family: inherit;
 }
 
 h1 {
@@ -15,6 +15,7 @@ h1 {
 }
 
 h2 {
+  padding-top: 1em;
   color:#0b7495;
   border-bottom:0;
 
@@ -164,7 +165,7 @@ a {
   text-shadow:1px 1px 1px rgba(255,255,255,.5);
 
   > .slide {
-    padding:0 48px;
+    padding:0 60px;
   }
 }
 
