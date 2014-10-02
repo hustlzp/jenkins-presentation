@@ -153,7 +153,19 @@ service jenkins start</pre>
 <section class="slide">
   <h2>tm_test / 触发</h2>
 
-  <p>GitHub、coding.net均支持Webhook。</p>
+  <p>需要达到的效果：每当开发成员向master推送更新时，触发tm_test任务。</p>
+
+  <p>如何实现：</p>
+
+  <ul>
+    <li>Jenkins的Git插件支持如下特性：当某url收到HTTP请求时，触发build。</li>
+    <li>GitHub等支持 <strong>Webhook</strong>：当Git服务器接收到push后，向指定url发送HTTP请求。</li>
+  </ul>
+
+  <p>因此，只需要在Git服务器上配置好Webhook即可：</p>
+
+  <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_4.png" alt=""/>
+
 </section>
 
 <section class="slide">
