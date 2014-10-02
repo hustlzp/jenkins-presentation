@@ -66,16 +66,16 @@
   <section class='slide'>
     <h2>真实的需求</h2>
 
-    <p>曾经在一个学生创业团队兼职，主要使用Python做Web开发。</p>
+    <p>曾经参与一个学生创业团队，主要使用Python做Web开发。</p>
 
     <ul>
-      <li>A新建了一个特性分支，写完了功能代码。</li>
-      <li>A忘记了执行单元测试，就将此分支合并到master。</li>
-      <li>A将代码部署到生产服务器。</li>
-      <li>网站出现了bug，严重影响了用户体验。</li>
+      <li>A新建了一个特性分支，写完了功能代码</li>
+      <li>A忘记了执行单元测试，就将此分支合并到master</li>
+      <li>A将代码部署到生产服务器</li>
+      <li>网站出现了bug，严重影响了用户体验</li>
     </ul>
 
-    <p><strong>解决方案</strong>：将测试/部署等 <strong>容易遗漏的、重复性的、枯燥的</strong> 过程，交给机器自动完成。</p>
+    <p><strong>解决方案</strong>：将测试/部署等 <strong>「容易遗漏的、重复性的、枯燥的」</strong> 过程，交给机器自动完成。</p>
     <ul>
       <li>减少风险，缩短 <strong>开发-测试-交付</strong> 的周期</li>
       <li>增强项目的可见性，增强团队对开发产品的信心</li>
@@ -115,21 +115,75 @@ service jenkins start</pre>
   </section>
 
   <section class="slide">
-    <h2>自动化测试、发布</h2>
+    <h2>自动化测试、代码质量检测、发布</h2>
 
-    <p>Job: Jenkins中的核心概念。</p>
+    <p><strong>Job</strong>: Jenkins中的核心概念，表示一种抽象的任务。</p>
 
     <ul>
-      <li>tm_test: 执行测试、代码质量检测等。</li>
-      <li>tm_staging_deploy: 将代码deploy到staging服务器上。</li>
-      <li>tm_production_deploy: 将代码部署到用于在production服务器上deploy代码。</li>
+      <li>tm_test: 执行测试、代码质量检测等</li>
+      <li>tm_staging_deploy: 将代码部署到staging服务器上</li>
+      <li>tm_production_deploy: 将代码部署到production服务器上</li>
     </ul>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/flow.png" alt=""/>
   </section>
 
   <section class="slide">
-    <h2>Over</h2>
+    <h2>工作流程简介</h2>
 
-    <p>Thank you for listening!</p>
+    <ol>
+      <li>使用Git作为代码管理工具</li>
+      <li>开发新功能时，需新建一个特性分支，开发完毕后合并到master</li>
+      <li>每当master分支的代码变动时，触发tm_test任务</li>
+      <li>tm_test若运行通过，则自动触发tm_staging_deploy任务，否则发送邮件报警</li>
+      <li>人工登陆运行在staging服务器上的网站，检查是否达到预期效果</li>
+      <li>若达到预期效果，手动触发tm_production_deploy任务</li>
+      <li>人工登陆运行在production服务器上的网站，检查是否达到预期效果</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>tm_test</h2>
+
+    <p>流程:</p>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/tm_test.png" alt=""/>
+  </section>
+
+  <section class="slide">
+    <h2>tm_staging_deploy</h2>
+
+    <p>流程:</p>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/tm_staging_deploy.png" alt=""/>
+  </section>
+
+  <section class="slide">
+    <h2>tm_production_deploy</h2>
+
+    <p>流程:</p>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/production_deploy.png" alt=""/>
+  </section>
+
+  <section class="slide">
+    <h2>Jenkins配置文件备份</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Jenkins配置文件变更记录</h2>
+  </section>
+
+  <section class="slide">
+    <h2>小结</h2>
+
+    <p>关注用户体验（对外），也关注工作体验（对内）。</p>
+
+    <p>关注DevOps = 提升产品的交付速度和质量 + 提升程序员的工作体验。</p>
+  </section>
+
+  <section class="slide">
+    <h2>Thank you for listening!</h2>
 
     <ul>
       <li>PPT地址: http://hustlzp.github.io/jenkins-presentation</li>
