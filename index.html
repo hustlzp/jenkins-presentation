@@ -47,7 +47,7 @@
 
   <p>博客: <a target="_blank" href="http://hustlzp.com">hustlzp.com</a></p>
 
-  <p>GitHub用户名: <a href="https://github.com/hustlzp">hustlzp</a></p>
+  <p>GitHub 用户名: <a href="https://github.com/hustlzp">hustlzp</a></p>
 
 </section>
 
@@ -55,10 +55,10 @@
   <h2>概要</h2>
   <ul>
     <li>真实的需求</li>
-    <li>Jenkins简介</li>
+    <li>Jenkins 简介</li>
     <li>安装和启动</li>
     <li>自动化测试、代码质量检测、发布</li>
-    <li>Jenkins配置文件的备份、变更记录</li>
+    <li>Jenkins 配置文件的备份、变更记录</li>
     <li>小结</li>
   </ul>
 </section>
@@ -66,13 +66,13 @@
 <section class='slide'>
   <h2>真实的需求</h2>
 
-  <p>曾经参与一个学生创业团队，主要使用Python做Web开发。</p>
+  <p>曾经参与一个学生创业团队，主要使用 Python 做 Web 开发。</p>
 
   <ul>
-    <li>A新建了一个特性分支，写完了功能代码</li>
-    <li>A忘记了执行单元测试，就将此分支合并到master</li>
-    <li>A将代码部署到生产服务器</li>
-    <li>网站出现了bug，严重影响了用户体验</li>
+    <li>A 新建了一个特性分支，写完了功能代码</li>
+    <li>A 忘记了执行单元测试，就将此分支合并到 master</li>
+    <li>A 将代码部署到生产服务器</li>
+    <li>网站出现了 bug，严重影响了用户体验</li>
   </ul>
 
   <p><strong>解决方案</strong>：将测试/部署等 <strong>「容易遗漏的、重复性的、枯燥的」</strong> 过程，交给机器自动完成。</p>
@@ -83,7 +83,7 @@
 </section>
 
 <section class='slide'>
-  <h2>Jenkins简介</h2>
+  <h2>Jenkins 简介</h2>
 
   <img style="margin-left: 0" src="http://jenkins-ci.org/sites/default/files/jenkins_logo.png">
 
@@ -93,7 +93,7 @@
     <li>安装简单</li>
     <li>配置简单</li>
     <li>极其丰富的插件</li>
-    <li>非常高的开发频率（GitHub项目地址: <a target="_blank" href="https://github.com/jenkinsci/jenkins">https://github.com/jenkinsci/jenkins</a>）
+    <li>非常高的开发频率（GitHub 项目地址: <a target="_blank" href="https://github.com/jenkinsci/jenkins">https://github.com/jenkinsci/jenkins</a>）
     </li>
   </ul>
 </section>
@@ -101,31 +101,31 @@
 <section class="slide">
   <h2>安装和启动</h2>
 
-  <p>针对Windows、Ubuntu、CentOS等数10种操作系统都提供了安装包。</p>
+  <p>针对 Windows、Ubuntu、CentOS 等数10种操作系统都提供了安装包。</p>
 
   <h3>举例：CentOS 6.5</h3>
 
     <pre>yum install jenkins
 service jenkins start</pre>
 
-  <h3>使用Docker安装</h3>
+  <h3>使用 Docker 安装</h3>
 
   <pre>docker run -d -p 8080:8080 -t zaiste/jenkins</pre>
 
-  <p>启动后，Jenkins会运行在8080端口，可通过浏览器访问。</p>
+  <p>启动后，Jenkins 会运行在 8080 端口，可通过浏览器访问。</p>
 </section>
 
 <section class="slide">
   <h2>自动化测试、代码质量检测、发布</h2>
 
-  <p><strong>Job</strong>: Jenkins中的核心概念，表示一种抽象的任务。</p>
+  <p><strong>Job</strong>: Jenkins 中的核心概念，表示一种抽象的任务。</p>
 
   <p>根据任务需要，建立如下三个job:</p>
 
   <ul>
     <li>tm_test: 执行测试、代码质量检测等</li>
-    <li>tm_staging_deploy: 将代码部署到staging服务器上</li>
-    <li>tm_production_deploy: 将代码部署到production服务器上</li>
+    <li>tm_staging_deploy: 将代码部署到 staging 服务器上</li>
+    <li>tm_production_deploy: 将代码部署到 production 服务器上</li>
   </ul>
 
   <img src="http://hustlzp-ppt.qiniudn.com/flow.png" alt=""/>
@@ -135,13 +135,13 @@ service jenkins start</pre>
   <h2>工作流程简介</h2>
 
   <ol>
-    <li>使用Git作为代码管理工具</li>
-    <li>开发新功能时，需新建一个特性分支，开发完毕后合并到master</li>
-    <li>每当master分支的代码变动时，触发tm_test任务</li>
-    <li>tm_test若运行通过，则自动触发tm_staging_deploy任务，否则发送邮件报警</li>
-    <li>人工登陆运行在staging服务器上的网站，检查是否达到预期效果</li>
-    <li>若达到预期效果，手动触发tm_production_deploy任务</li>
-    <li>人工登陆运行在production服务器上的网站，检查是否达到预期效果</li>
+    <li>使用 Git 作为代码管理工具</li>
+    <li>开发新功能时，需新建一个特性分支，开发完毕后合并到 master</li>
+    <li>每当 master 分支的代码变动时，触发 tm_test 任务</li>
+    <li>tm_test 若运行通过，则自动触发 tm_staging_deploy 任务，否则发送邮件报警</li>
+    <li>人工登陆运行在 staging 服务器上的网站，检查是否达到预期效果</li>
+    <li>若达到预期效果，手动触发 tm_production_deploy 任务</li>
+    <li>人工登陆运行在 production 服务器上的网站，检查是否达到预期效果</li>
   </ol>
 </section>
 
@@ -156,16 +156,16 @@ service jenkins start</pre>
 <section class="slide">
   <h2>tm_test / 触发</h2>
 
-  <p>需要达到的效果：每当开发成员向master推送更新时，触发tm_test任务。</p>
+  <p>需要达到的效果：每当开发成员向 master 推送更新时，触发 tm_test 任务。</p>
 
   <p>如何实现：</p>
 
   <ul>
-    <li>Jenkins的Git插件支持如下特性：当某url收到HTTP请求时，触发build。</li>
-    <li>GitHub等支持 <strong>Webhook</strong>：当Git服务器接收到push后，向指定url发送HTTP请求。</li>
+    <li>Jenkins 的 Git 插件支持如下特性：当某 url 收到 HTTP 请求时，触发 build。</li>
+    <li>GitHub 等支持 <strong>Webhook</strong>：当 Git 服务器接收到 push 后，向指定 url 发送 HTTP 请求。</li>
   </ul>
 
-  <p>因此，只需要在Git服务器上配置好Webhook即可：</p>
+  <p>因此，只需要在 Git 服务器上配置好 Webhook 即可：</p>
 
   <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_4.png" alt=""/>
 
@@ -174,7 +174,7 @@ service jenkins start</pre>
 <section class="slide">
   <h2>tm_test / 准备测试环境</h2>
 
-  <p>在tm_test中添加Execute shell项，输入：</p>
+  <p>在 tm_test 中添加 Execute shell 项，输入：</p>
 
     <pre>if [ ! -d "venv" ]; then
   virtualenv -p /usr/bin/python2.7 venv
@@ -187,35 +187,35 @@ pip install -r requirements.txt</pre>
 <section class="slide">
   <h2>tm_test / 测试</h2>
 
-  <p>在tm_test中添加Execute shell项，输入：</p>
+  <p>在 tm_test 中添加 Execute shell 项，输入：</p>
 
   <pre>nosetests --with-xunit --with-coverage --cover-package=tm && coverage xml</pre>
 
   <ul>
-    <li>使用nose测试Python程序</li>
-    <li>--with-xunit告诉nose输出JUnit形式的测试报告</li>
-    <li>--with-coverage表示同时计算测试覆盖率</li>
-    <li>--cover-package=tm表示仅对指定的package执行测试覆盖率检测</li>
-    <li>coverage xml表示输出xml格式的coverage报告</li>
+    <li>使用 nose 测试 Python 程序</li>
+    <li>--with-xunit 告诉 nose 输出 JUnit 形式的测试报告</li>
+    <li>--with-coverage 表示同时计算测试覆盖率</li>
+    <li>--cover-package=tm 表示仅对指定的 package 执行测试覆盖率检测</li>
+    <li>coverage xml 表示输出 xml 格式的 coverage 报告</li>
   </ul>
 </section>
 
 <section class="slide">
   <h2>tm_test / 代码质量检测</h2>
 
-  <p>使用Pylint检测Python代码质量：</p>
+  <p>使用 Pylint 检测 Python 代码质量：</p>
 
   <pre>pylint tm2 > pylint.xml || exit 0</pre>
 
-  <p>使用JSHint检测JavaScript代码质量：</p>
+  <p>使用 JSHint 检测 JavaScript 代码质量：</p>
 
   <pre>jshint --reporter=jslint $WORKSPACE/tm2/static/js/ > jslint.xml || exit 0</pre>
 </section>
 
 <section class="slide">
-  <h2>tm_test / 检测TODO等特殊标记</h2>
+  <h2>tm_test / 检测 TODO 等特殊标记</h2>
 
-  <p>写代码的时候，如果某个功能有待完善，可以加一个TODO标记，如：</p>
+  <p>写代码的时候，如果某个功能有待完善，可以加一个 TODO 标记，如：</p>
 
   <pre># TODO: need to calculate the recommend teachers
 recommend_teachers = Teacher.query.limit(10)</pre>
@@ -242,7 +242,7 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 
   <p>使用 <strong>Violations</strong> 插件来收集代码质量报告。</p>
 
-  <p>支持pylint、jshint、csslint、cpplint等诸多代码检测程序。</p>
+  <p>支持 pylint、jshint、csslint、cpplint 等诸多代码检测程序。</p>
 
   <img src="http://hustlzp-ppt.qiniudn.com/code_check.png" alt=""/>
 </section>
@@ -250,17 +250,17 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 <section class="slide">
   <h2>tm_test / 邮件告警</h2>
 
-  <p>Jenkins默认支持邮件告警功能。</p>
+  <p>Jenkins 默认支持邮件告警功能。</p>
 
   <img style="margin-left: 0;" src="http://hustlzp-ppt.qiniudn.com/Snip20141002_2.png" alt=""/>
 
-  <p>小技巧：将qq邮箱绑定到手机（15271872672@qq.com），即可实现短信报警通知。</p>
+  <p>小技巧：将 qq 邮箱绑定到手机（15271872672@qq.com），即可实现短信报警通知。</p>
 </section>
 
 <section class="slide">
-  <h2>tm_test / 触发下游job</h2>
+  <h2>tm_test / 触发下游 job</h2>
 
-  <p>使用 <strong>Parameterized Trigger Plugin</strong> 插件触发其他job。</p>
+  <p>使用 <strong>Parameterized Trigger Plugin</strong> 插件触发其他 job。</p>
 
   <img style="margin-left: 0;" src="http://hustlzp-ppt.qiniudn.com/Snip20141002_3.png" alt=""/>
 </section>
@@ -297,27 +297,27 @@ supervisorctl restart tm         # 重启app</pre>
 </section>
 
 <section class="slide">
-  <h2>Jenkins配置文件备份</h2>
+  <h2>Jenkins 配置文件备份</h2>
 
-  <p>Jenkins的配置是一项较为费时的过程。</p>
+  <p>Jenkins 的配置是一项较为费时的过程。</p>
 
-  <p>需要对Jenkins的配置文件（xml）进行备份，以便出现意外后恢复。</p>
+  <p>需要对 Jenkins 的配置文件（xml）进行备份，以便出现意外后恢复。</p>
 
   <p>使用 <strong>ThinBackup</strong> 插件实现备份。</p>
 </section>
 
 <section class="slide">
-  <h2>Jenkins配置文件变更记录</h2>
+  <h2>Jenkins 配置文件变更记录</h2>
 
-  <p>同事A对Jenkins配置进行了更新。</p>
+  <p>A 对 Jenkins 配置进行了更新。</p>
 
-  <p>第二天Jenkins服务器出现错误，同事A着手解决，但是他忘记了到底对配置做了哪些更改，找了很久都没有发现错误所在。</p>
+  <p>第二天 Jenkins 服务器出现错误，A 着手解决，但是他忘记了到底对配置做了哪些更改，找了很久都没有发现错误所在。</p>
 
-  <p><strong>启发</strong>：如果能够知道Jenkins配置文件的变更历史，对于debug有非常大的帮助。</p>
+  <p><strong>启发</strong>：如果能够知道 Jenkins 配置文件的变更历史，对于 debug 有非常大的帮助。</p>
 
-  <p>→ 使用 <strong>SCM Sync configuration plugin</strong> 插件记录Jenkins配置文件的变更历史。</p>
+  <p>→ 使用 <strong>SCM Sync configuration plugin</strong> 插件记录 Jenkins 配置文件的变更历史。</p>
 
-  <p><strong>原理</strong>：每次更新配置，都会发送一个commit提交到Git仓库。</p>
+  <p><strong>原理</strong>：每次更新配置，都会发送一个 commit 提交到 Git 仓库。</p>
 
   <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_5.png" alt=""/>
 </section>
@@ -327,7 +327,7 @@ supervisorctl restart tm         # 重启app</pre>
 
   <p>关注用户体验（对外），也关注工作体验（对内）。</p>
 
-  <p>关注DevOps = 提升产品的交付速度和质量 + 提升程序员的工作体验。</p>
+  <p>关注 DevOps = 提升产品的交付速度和质量 + 提升程序员的工作体验。</p>
 
   <img src="http://hustlzp-ppt.qiniudn.com/1348121383_9531.jpg" alt=""/>
 </section>
@@ -336,14 +336,14 @@ supervisorctl restart tm         # 重启app</pre>
   <h2>插件清单</h2>
 
   <ul>
-    <li>Git Plugin：使用Git作为源代码管理</li>
-    <li>SSH plugin：远程ssh登录server执行命令</li>
-    <li>Parameterized Trigger Plugin：触发下游job</li>
-    <li>Cobertura Plugin：代码测试覆盖率报告</li>
-    <li>Task Scanner Plugin：检测代码中出现的特殊标记（如TODO等）</li>
-    <li>Violations：代码质量检测报告</li>
-    <li>ThinBackup：用于备份Jenkins</li>
-    <li>SCM Sync configuration plugin：将Jenkens的配置变更同步到SCM中</li>
+    <li>Git Plugin: 使用 Git 作为源代码管理</li>
+    <li>SSH plugin: 远程 ssh 登录 server 执行命令</li>
+    <li>Parameterized Trigger Plugin: 触发下游 job</li>
+    <li>Cobertura Plugin: 代码测试覆盖率报告</li>
+    <li>Task Scanner Plugin: 检测代码中出现的特殊标记（如 TODO 等）</li>
+    <li>Violations: 代码质量检测报告</li>
+    <li>ThinBackup: 用于备份 Jenkins</li>
+    <li>SCM Sync configuration plugin: 将 Jenkens 的配置变更同步到代码仓库中</li>
   </ul>
 </section>
 
@@ -351,7 +351,7 @@ supervisorctl restart tm         # 重启app</pre>
   <h2>多多指教，多多交流！</h2>
 
   <ul>
-    <li>PPT地址: <a href="http://hustlzp.github.io/jenkins-presentation" target="_blank">http://hustlzp.github.io/jenkins-presentation</a>
+    <li>PPT 地址: <a href="http://hustlzp.github.io/jenkins-presentation" target="_blank">http://hustlzp.github.io/jenkins-presentation</a>
     </li>
     <li>相关博文: <a href="http://hustlzp.com/post/2014/08/jenkins"
                  target="_blank">http://hustlzp.com/post/2014/08/jenkins</a></li>
