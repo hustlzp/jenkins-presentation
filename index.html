@@ -119,6 +119,8 @@ service jenkins start</pre>
 
   <p><strong>Job</strong>: Jenkins中的核心概念，表示一种抽象的任务。</p>
 
+  <p>根据任务需要，建立如下三个job:</p>
+
   <ul>
     <li>tm_test: 执行测试、代码质量检测等</li>
     <li>tm_staging_deploy: 将代码部署到staging服务器上</li>
@@ -269,7 +271,7 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 
   <img src="http://hustlzp-ppt.qiniudn.com/tm_staging_deploy.png" alt=""/>
 
-  <p>需要SSH plugin插件实现远程登录。</p>
+  <p>需要 <strong>SSH plugin</strong> 插件实现远程登录。</p>
 </section>
 
 <section class="slide">
@@ -295,10 +297,28 @@ supervisorctl restart tm         # 重启app</pre>
 
 <section class="slide">
   <h2>Jenkins配置文件备份</h2>
+
+  <p>Jenkins的配置是一项较为费时的过程。</p>
+
+  <p>需要对Jenkins的配置文件（xml）进行备份，以便出现意外后恢复。</p>
+
+  <p>使用 <strong>ThinBackup</strong> 插件实现备份。</p>
 </section>
 
 <section class="slide">
   <h2>Jenkins配置文件变更记录</h2>
+
+  <p>同事A对Jenkins配置进行了更新。</p>
+
+  <p>第二天Jenkins服务器出现错误，同事A着手解决，但是他忘记了到底对配置做了哪些更改，找了很久都没有发现错误所在。</p>
+
+  <p><strong>启发</strong>：如果能够知道Jenkins配置文件的变更历史，对于debug有非常大的帮助。</p>
+
+  <p>→ 使用 <strong>SCM Sync configuration plugin</strong> 插件记录Jenkins配置文件的变更历史。</p>
+
+  <p><strong>原理</strong>：每次更新配置，都会发送一个commit提交到Git仓库。</p>
+
+  <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_5.png" alt=""/>
 </section>
 
 <section class="slide">
@@ -307,12 +327,12 @@ supervisorctl restart tm         # 重启app</pre>
   <p>关注用户体验（对外），也关注工作体验（对内）。</p>
 
   <p>关注DevOps = 提升产品的交付速度和质量 + 提升程序员的工作体验。</p>
+
+  <img src="http://hustlzp-ppt.qiniudn.com/1348121383_9531.jpg" alt=""/>
 </section>
 
 <section class="slide">
   <h2>插件清单</h2>
-
-  <p>使用到的Jenkins插件一览:</p>
 
   <ul>
     <li>Git Plugin：使用Git作为源代码管理</li>
@@ -327,7 +347,7 @@ supervisorctl restart tm         # 重启app</pre>
 </section>
 
 <section class="slide">
-  <h2>Thank you for listening!</h2>
+  <h2>多多指教，多多交流！</h2>
 
   <ul>
     <li>PPT地址: http://hustlzp.github.io/jenkins-presentation</li>
