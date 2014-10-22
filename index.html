@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=1024, user-scalable=no">
 
-  <title>Jenkins Presentation</title>
+  <title>Jenkins</title>
 
   <!-- Required stylesheet -->
   <link rel="stylesheet" media="screen" href="core/deck.core.css">
@@ -45,9 +45,9 @@
 
   <p>华中科技大学光电学院，2015年6月毕业。</p>
 
-  <p>博客: <a target="_blank" href="http://hustlzp.com">hustlzp.com</a></p>
+  <p>个人博客: <a target="_blank" href="http://hustlzp.com">hustlzp.com</a></p>
 
-  <p>GitHub 用户名: <a href="https://github.com/hustlzp">hustlzp</a></p>
+  <p>GitHub: <a href="https://github.com/hustlzp">github.com/hustlzp</a></p>
 
 </section>
 
@@ -57,7 +57,7 @@
     <li>真实的需求</li>
     <li>Jenkins 简介</li>
     <li>安装和启动</li>
-    <li>自动化测试、代码质量检测、发布</li>
+    <li>自动化测试、代码质量检测、部署</li>
     <li>Jenkins 配置文件的备份、变更记录</li>
     <li>小结</li>
   </ul>
@@ -66,20 +66,33 @@
 <section class='slide'>
   <h2>真实的需求</h2>
 
-  <p>曾经参与一个学生创业团队，主要使用 Python 做 Web 开发。</p>
+  <p>曾经加入一个学生创业公司，主要做 Python Web 开发，使用 Git 管理代码。</p>
+
+  <p>反复遇到过的<strong>问题</strong>：</p>
 
   <ul>
-    <li>A 新建了一个特性分支，写完了功能代码</li>
+    <li>A 新建了一个特性分支，写完了业务代码</li>
     <li>A 忘记了执行单元测试，就将此分支合并到 master</li>
     <li>A 将代码部署到生产服务器</li>
-    <li>网站出现了 bug，严重影响了用户体验</li>
+    <li>网站出现 bug，严重影响了用户体验</li>
   </ul>
 
-  <p><strong>解决方案</strong>：将测试/部署等 <strong>「容易遗漏的、重复性的、枯燥的」</strong> 过程，交给机器自动完成。</p>
+  <p>人总是会失误的，如何尽量避免这种人为失误？</p>
+</section>
+
+<section class='slide'>
+  <h2>真实的需求</h2>
+
+  <p><strong>思考</strong>：能否将测试/部署等 <strong>「容易遗漏的、重复性的、枯燥的」</strong> 过程，交给机器自动完成？</p>
+
+  <p>这样做的好处：</p>
+
   <ul>
-    <li>减少风险，缩短 <strong>「开发-测试-交付」</strong> 的周期</li>
-    <li>增强项目的可见性，增强团队对开发产品的信心</li>
+    <li>对个人：节省程序员的时间，可以将精力投入到更有趣的工作之中</li>
+    <li>对团队：增强项目的可见性，增强团队对开发产品的信心</li>
+    <li>对产品：减少风险，缩短 <strong>「开发-测试-交付」</strong> 的周期</li>
   </ul>
+
 </section>
 
 <section class='slide'>
@@ -103,7 +116,7 @@
 
   <p>针对 Windows、Ubuntu、CentOS 等数10种操作系统都提供了安装包。</p>
 
-  <h3>举例：CentOS 6.5</h3>
+  <h3>在 CentOS 6.5 中安装</h3>
 
     <pre>yum install jenkins
 service jenkins start</pre>
@@ -116,15 +129,15 @@ service jenkins start</pre>
 </section>
 
 <section class="slide">
-  <h2>自动化测试、代码质量检测、发布</h2>
+  <h2>使用 Jenkins 进行自动化代码测试、代码质量检测、部署</h2>
 
   <p><strong>Job</strong>: Jenkins 中的核心概念，表示一种抽象的任务。</p>
 
-  <p>根据任务需要，建立如下三个job:</p>
+  <p>根据我们的项目需要，建立如下三个job:</p>
 
   <ul>
-    <li>tm_test: 执行测试、代码质量检测等</li>
-    <li>tm_staging_deploy: 将代码部署到 staging 服务器上</li>
+    <li>tm_test: 执行单元测试、代码质量检测等步骤</li>
+    <li>tm_staging_deploy: 将代码部署到 staging 服务器（即测试服务器）上</li>
     <li>tm_production_deploy: 将代码部署到 production 服务器上</li>
   </ul>
 
