@@ -43,7 +43,7 @@
 
   <p>刘志鹏 / hustlzp</p>
 
-  <p>湖北安陆人。</p>
+  <p>湖北安陆。</p>
 
   <p>华中科技大学光电学院，2015年6月毕业。</p>
 
@@ -100,7 +100,7 @@
 
   <img style="margin-left: 0" src="http://jenkins-ci.org/sites/default/files/jenkins_logo.png">
 
-  <p>市场占有率最高（70%）的持续集成工具。</p>
+  <p>市场占有率最高（70%）的自动化持续集成工具。</p>
 
   <ul>
     <li>安装简单</li>
@@ -138,7 +138,7 @@ service jenkins start</pre>
     <li>使用 nosetest 对 Controller （MVC 中的 C）进行简单的单元测试</li>
   </ul>
 
-  <p><strong>部署在阿里云上的服务器</strong>：</p>
+  <p><strong>部署在阿里云上的 2 台服务器</strong>：</p>
 
   <ul>
     <li>Production 服务器（生产服务器）：用于向用户提供服务</li>
@@ -190,12 +190,12 @@ service jenkins start</pre>
   <p class="slide">如何实现：</p>
 
   <ul>
-    <li class="slide">Git服务器一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP GET 请求。</li>
-    <li class="slide">Jenkins 的 Git 插件支持如下特性：当某 url 收到 HTTP 请求时，触发 build。</li>
+    <li class="slide">Git服务提供商（如GitHub、coding.net等）一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP 请求。</li>
+    <li class="slide">Jenkins 的 Git 插件支持如下特性：当指定 url 收到 HTTP 请求时，触发 build。</li>
   </ul>
 
   <div class="slide">
-    <p>结合上述2点，因此只需要在 Git 服务器上配置好 Webhook 即可：</p>
+    <p>结合上述 2 点，因此只需要在 Git 服务器上配置好 Webhook 即可：</p>
 
     <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_4.png" alt=""/>
   </div>
