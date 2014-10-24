@@ -171,7 +171,7 @@ a {
 
 .slide {
   .deck-before, .deck-previous {
-    opacity:0.4;
+    opacity:1;
 
     &:not(.deck-child-current) {
       .deck-before, .deck-previous {

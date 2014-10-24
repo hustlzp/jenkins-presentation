@@ -378,7 +378,7 @@ a:hover, a:focus {
     padding: 0 60px; }
 
 .slide .deck-before, .slide .deck-previous {
-  opacity: 0.4; }
+  opacity: 01; }
   .slide .deck-before:not(.deck-child-current) .deck-before, .slide .deck-before:not(.deck-child-current) .deck-previous, .slide .deck-previous:not(.deck-child-current) .deck-before, .slide .deck-previous:not(.deck-child-current) .deck-previous {
     opacity: 1; }
 .slide .deck-child-current {

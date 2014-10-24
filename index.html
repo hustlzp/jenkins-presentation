@@ -60,7 +60,7 @@
     <li>安装和启动</li>
     <li>自动化测试、代码质量检测、部署</li>
     <li>Jenkins 配置文件的备份、变更记录</li>
-    <li>小结</li>
+    <li>结语</li>
   </ul>
 </section>
 
@@ -89,9 +89,9 @@
   <p>这样做的好处：</p>
 
   <ul>
-    <li>对个人：节省程序员的时间，可以将精力投入到更有趣的工作之中</li>
-    <li>对团队：增加项目的可见性，增强团队对开发产品的信心</li>
-    <li>对产品：减少风险，缩短 <strong>「开发-测试-交付」</strong> 的周期</li>
+    <li class="slide">对个人：节省程序员的时间，可以将精力投入到更有趣的工作之中</li>
+    <li class="slide">对团队：增加项目的可见性，增强团队对开发产品的信心</li>
+    <li class="slide">对产品：减少风险，缩短 <strong>「开发-测试-交付」</strong> 的周期</li>
   </ul>
 </section>
 
@@ -164,14 +164,14 @@ service jenkins start</pre>
   <h2>基于 Jenkins 的工作流简介</h2>
 
   <ol>
-    <li>开发新功能时，需新建特性分支，开发完毕后合并到 master，并自动触发 tm_test 任务</li>
-    <li>tm_test 若运行通过，则自动触发 tm_staging_deploy 任务，否则发送邮件报警</li>
-    <li>人工登陆运行在 staging 服务器上的网站，检查是否达到预期效果</li>
-    <li>若达到预期效果，手动触发 tm_production_deploy 任务</li>
-    <li>人工登陆运行在 production 服务器上的网站，检查是否达到预期效果</li>
+    <li class="slide">开发新功能时，需新建特性分支，开发完毕后合并到 master，并自动触发 tm_test 任务</li>
+    <li class="slide">tm_test 若运行通过，则自动触发 tm_staging_deploy 任务，否则发送邮件报警</li>
+    <li class="slide">人工登陆运行在 staging 服务器上的网站，检查是否达到预期效果</li>
+    <li class="slide">若达到预期效果，手动触发 tm_production_deploy 任务</li>
+    <li class="slide">人工登陆运行在 production 服务器上的网站，检查是否达到预期效果</li>
   </ol>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/workflow.png" alt=""/>
+  <img class="slide" src="http://hustlzp-ppt.qiniudn.com/workflow.png" alt=""/>
 </section>
 
 <section class="slide">
@@ -187,16 +187,18 @@ service jenkins start</pre>
 
   <p>需要达到的效果：每当开发成员向 master push代码时，自动触发 tm_test 任务。</p>
 
-  <p>如何实现：</p>
+  <p class="slide">如何实现：</p>
 
   <ul>
-    <li>Git服务器一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP GET 请求。</li>
-    <li>Jenkins 的 Git 插件支持如下特性：当某 url 收到 HTTP 请求时，触发 build。</li>
+    <li class="slide">Git服务器一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP GET 请求。</li>
+    <li class="slide">Jenkins 的 Git 插件支持如下特性：当某 url 收到 HTTP 请求时，触发 build。</li>
   </ul>
 
-  <p>结合上述2点，因此只需要在 Git 服务器上配置好 Webhook 即可：</p>
+  <div class="slide">
+    <p>结合上述2点，因此只需要在 Git 服务器上配置好 Webhook 即可：</p>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_4.png" alt=""/>
+    <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_4.png" alt=""/>
+  </div>
 </section>
 
 <section class="slide">
@@ -247,14 +249,20 @@ pip install -r requirements.txt</pre>
 <section class="slide">
   <h2>tm_test / 检测 TODO 等特殊标记</h2>
 
-  <p>很多人的习惯：写代码的时候，如果某个功能有待日后完善，可以加一个 TODO 标记：</p>
+  <div class="slide">
 
-  <pre># TODO: need to calculate the recommend teachers
+    <p>一些人的习惯：写代码的时候，如果某个功能有待日后完善/重构，可以加一个 TODO 注释进行标记：</p>
+
+  <pre># TODO: need to filter the recommend teachers
 recommend_teachers = Teacher.query.limit(10)</pre>
 
-  <p>可以借助 <strong>Task Scanner Plugin</strong> 插件，实现对特殊标记的检测：</p>
+  </div>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_1.png" alt=""/>
+  <div class="slide">
+    <p>可以借助 <strong>Task Scanner Plugin</strong> 插件，实现对特殊标记的检测：</p>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_1.png" alt=""/>
+  </div>
 </section>
 
 <section class="slide">
@@ -264,9 +272,11 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 
   <img src="http://hustlzp-ppt.qiniudn.com/coverage.png" alt=""/>
 
-  <p>单个文件的详细报告：</p>
+  <div class="slide">
+    <p>单个文件的详细报告：</p>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/Snip20140816_25.jpeg" alt=""/>
+    <img src="http://hustlzp-ppt.qiniudn.com/Snip20140816_25.jpeg" alt=""/>
+  </div>
 </section>
 
 <section class="slide">
@@ -286,7 +296,7 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 
   <img style="margin-left: 0;" src="http://hustlzp-ppt.qiniudn.com/Snip20141002_2.png" alt=""/>
 
-  <p>小技巧：将 qq 邮箱绑定到手机（15271872672@qq.com），即可实现短信报警通知。</p>
+  <p class="slide"><strong>Tips</strong>：将 qq 邮箱绑定到手机（15271872672@qq.com），即可实现短信报警通知。</p>
 </section>
 
 <section class="slide">
@@ -296,7 +306,7 @@ recommend_teachers = Teacher.query.limit(10)</pre>
 
   <img style="margin-left: 0;" src="http://hustlzp-ppt.qiniudn.com/Snip20141002_3.png" alt=""/>
 
-  上面的配置表示：当 tm_test 构建成功时，自动触发 tm_staging_deploy 任务。
+  <p>上面的配置表示：当 tm_test 构建成功时，自动触发 tm_staging_deploy 任务。</p>
 </section>
 
 <section class="slide">
@@ -347,37 +357,43 @@ supervisorctl restart tm         # 重启app</pre>
 
   <p><strong>举例</strong>：某天 A 对 Jenkins 配置进行了更新。第二天 Jenkins 服务器出现错误，A 着手解决，但是他忘记了到底对配置做了哪些更改，找了很久都没有发现错误所在。</p>
 
-  <p><strong>思考</strong>：如果能够知道 Jenkins 配置文件的变更历史，对于 debug 有非常大的帮助。</p>
+  <p class="slide"><strong>思考</strong>：如果能够知道 Jenkins 配置文件的变更历史，对于 debug 有非常大的帮助。</p>
 
-  <p>→ 使用 <strong>SCM Sync configuration plugin</strong> 插件记录 Jenkins 配置文件的变更历史。</p>
+  <p class="slide">→ 使用 <strong>SCM Sync configuration plugin</strong> 插件记录 Jenkins 配置文件的变更历史。</p>
 
-  <p><strong>原理</strong>：每次更新 Jenkins 配置，都会 push 一个 commit 到单独的 Git 仓库。</p>
+  <div class="slide">
+    <p><strong>原理</strong>：每次更新 Jenkins 配置，都会 push 一个 commit 到单独的 Git 仓库。</p>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_5.png" alt=""/>
+    <img src="http://hustlzp-ppt.qiniudn.com/Snip20141002_5.png" alt=""/>
+  </div>
 </section>
 
 <section class="slide">
-  <h2>小结</h2>
+  <h2>结语</h2>
 
-  <p>对于互联网企业来说，不仅要关注用户体验（对外），也要关注工作体验（对内）。</p>
+  <p class="slide">对于互联网企业来说，不仅关注用户体验（对外），也关注工作体验（对内）。</p>
 
-  <p>不断优化开发流程 = 不断提升产品的交付速度和质量 + 不断提升员工的工作体验。</p>
+  <p class="slide">不仅保证业务的按时交付（结果），也要注重开发流程的改进（过程）。</p>
 
-  <p>程序员和公司的一种 <strong>双赢</strong>。</p>
+  <p class="slide">不断优化开发流程 = 不断提升产品的交付速度和质量 + 不断提升员工的工作体验。</p>
 
-  <img src="http://hustlzp-ppt.qiniudn.com/1348121383_9531.jpg" alt=""/>
+  <div class="slide">
+    <p>→ 程序员和公司的一种 <strong>双赢</strong>。</p>
+
+    <img src="http://hustlzp-ppt.qiniudn.com/1348121383_9531.jpg" alt=""/>
+  </div>
 </section>
 
 <section class="slide">
-  <h2>插件清单</h2>
+  <h2>使用到的 Jenkins 插件清单</h2>
 
   <ul>
-    <li>Git Plugin: 使用 Git 作为源代码管理</li>
+    <li>Git Plugin: 使用 Git 作为源代码管理工具</li>
     <li>SSH plugin: 远程 ssh 登录 server 执行命令</li>
     <li>Parameterized Trigger Plugin: 触发下游 job</li>
-    <li>Cobertura Plugin: 代码测试覆盖率报告</li>
+    <li>Cobertura Plugin: 生成代码测试覆盖率报告</li>
     <li>Task Scanner Plugin: 检测代码中出现的特殊标记（如 TODO 等）</li>
-    <li>Violations: 代码质量检测报告</li>
+    <li>Violations: 生成代码质量检测报告</li>
     <li>ThinBackup: 用于备份 Jenkins</li>
     <li>SCM Sync configuration plugin: 将 Jenkins 的配置变更同步到代码仓库中</li>
   </ul>
@@ -388,7 +404,7 @@ supervisorctl restart tm         # 重启app</pre>
 
   <ul>
     <li>
-      PPT 地址: <a href="http://hustlzp.github.io/jenkins-presentation" target="_blank">http://hustlzp.github.io/jenkins-presentation</a>
+      PPT 在线演示地址: <a href="http://hustlzp.github.io/jenkins-presentation" target="_blank">http://hustlzp.github.io/jenkins-presentation</a>
     </li>
     <li>
       相关博文: <a href="http://hustlzp.com/post/2014/08/jenkins"
@@ -409,10 +425,10 @@ supervisorctl restart tm         # 重启app</pre>
 <!-- Begin extension snippets. Add or remove as needed. -->
 
 <!-- deck.navigation snippet -->
-<div aria-role="navigation">
-  <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-  <a href="#" class="deck-next-link" title="Next">&#8594;</a>
-</div>
+<!--<div aria-role="navigation">-->
+<!--<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>-->
+<!--<a href="#" class="deck-next-link" title="Next">&#8594;</a>-->
+<!--</div>-->
 
 <!-- deck.status snippet -->
 <p class="deck-status" aria-role="status">
