@@ -185,12 +185,12 @@ service jenkins start</pre>
 <section class="slide">
   <h2>tm_test / 设置触发条件</h2>
 
-  <p>需要达到的效果：每当开发成员向 master push代码时，自动触发 tm_test 任务。</p>
+  <p>需要达到的效果：每当开发成员向 master push 代码时，自动触发 tm_test 任务。</p>
 
   <p class="slide">如何实现：</p>
 
   <ul>
-    <li class="slide">Git服务提供商（如GitHub、coding.net等）一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP 请求。</li>
+    <li class="slide">Git 服务提供商（如 GitHub、coding.net 等）一般支持 <strong>Webhook</strong> 特性：当 Git 服务器接收到 push 后，可添加一个 hook：向指定 url 发送 HTTP 请求。</li>
     <li class="slide">Jenkins 的 Git 插件支持如下特性：当指定 url 收到 HTTP 请求时，触发 build。</li>
   </ul>
 
